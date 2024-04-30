@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pro6/api/ras.dart';
 import 'package:pro6/interfaz/desarrollador.dart';
 import 'package:pro6/interfaz/reportes.dart';
 import 'package:pro6/interfaz/grid.dart';
@@ -65,18 +66,44 @@ class _principioState extends State<principio> {
             ListTile(
               title: Text('REPORTES'),
               leading: Icon(Icons.report),
-              onTap: () { 
-              Navigator.of(context).push(
-              MaterialPageRoute(
-            builder: (context) => reportes(),
-            ),
-          );
-        },
+              onTap: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => reportes(),
+                  ),
+                );
+              },
             ),
             Divider(),
             ListTile(
               title: Text('REPORTES'),
               leading: Icon(Icons.home),
+              onTap: () {
+                Buscaras().then((r) {
+                  showModalBottomSheet(
+                      isScrollControlled: true,
+                      context: context,
+                      builder: (context) {
+                        return Scaffold(
+                          appBar: AppBar(
+                            title: Text("RAS"),
+                          ),
+                          body: ListView.builder(
+                            itemCount: r.length,
+                            itemBuilder: (BuildContext context, int i) {
+                              return ListTile(
+                                leading: CircleAvatar(
+                                  backgroundImage: NetworkImage(r[i].url),
+                                ),
+                                title: Text(r[i].title),
+                                trailing: Text(r[i].id.toString()),
+                              );
+                            },
+                          ),
+                        );
+                      });
+                });
+              },
             ),
             Divider(),
             ListTile(
@@ -87,25 +114,25 @@ class _principioState extends State<principio> {
             ListTile(
               title: Text('DESARROLLADOR'),
               leading: Icon(Icons.contacts),
-              onTap: () { 
-              Navigator.of(context).push(
-              MaterialPageRoute(
-            builder: (context) => programa(),
-            ),
-          );
-        },
+              onTap: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => programa(),
+                  ),
+                );
+              },
             ),
             Divider(),
             ListTile(
               title: Text('GRIND'),
               leading: Icon(Icons.home_max_outlined),
-              onTap: () { 
-              Navigator.of(context).push(
-              MaterialPageRoute(
-            builder: (context) => serpientes(),
-            ),
-          );
-        },
+              onTap: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => serpientes(),
+                  ),
+                );
+              },
             ),
           ],
         ),

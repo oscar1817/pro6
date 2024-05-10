@@ -77,7 +77,7 @@ class _principioState extends State<principio> {
             Divider(),
             ListTile(
               title: Text('REPORTES'),
-              leading: Icon(Icons.home),
+              leading: Icon(Icons.report_off),
               onTap: () {
                 Buscaras().then((r) {
                   showModalBottomSheet(
@@ -100,6 +100,60 @@ class _principioState extends State<principio> {
                               );
                             },
                           ),
+                          floatingActionButton: IconButton(
+                            onPressed: (){
+                              showModalBottomSheet(
+                                isScrollControlled: true,
+                                context: context,
+                                 builder: (context){
+                                   return Scaffold(
+                                    appBar: AppBar(title: Text('FORMULARIO'),
+                                    ),
+                                    body: Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Column(
+                                        children: [
+                                          Padding(
+                                            padding: const EdgeInsets.all(8.0),
+                                            child: TextField(
+                                              decoration: InputDecoration(
+                                                labelText: 'ID',
+                                                hintText: 'INGRESE SOLO EL CODIGO SOLICITADO',
+                                                border: OutlineInputBorder()),
+                                              ),
+                                            ),
+                                            Padding(
+                                              padding: const EdgeInsets.all(8.0),
+                                              child: TextField(
+                                                decoration: InputDecoration(
+                                                  labelText: 'TITLE',
+                                                  hintText: 'INGRESE SOLO CARACTERES',
+                                                  border: OutlineInputBorder()),
+                                              ),
+                                              ),
+                                              Padding(
+                                                padding: const EdgeInsets.all(8.0),
+                                                child: TextField(
+                                                  decoration: InputDecoration(
+                                                    labelText: 'BODY',
+                                                    hintText: 'INGRESE SOLO CARACTERES',
+                                                    border: OutlineInputBorder()),
+                                                  ),
+                                                ),
+                                                Padding(
+                                                  padding: const EdgeInsets.all(8.0),
+                                                  child: ElevatedButton.icon(
+                                                    onPressed: (){},
+                                                    icon: Icon(Icons.save),
+                                                    label: Text('GUADAR')))
+                                        ],
+                                      ),
+                                      ),
+                                   );
+                                 },);
+                            },
+                            icon: Icon(Icons.add),
+                            ),
                         );
                       });
                 });
@@ -147,6 +201,37 @@ class _principioState extends State<principio> {
           Text('RAS')
         ],
       ),
+      floatingActionButton: ElevatedButton.icon(
+        onPressed: () {
+          showModalBottomSheet(
+            context: context,
+             builder: (context){
+              return Scaffold(
+                appBar: AppBar(
+                  title: Text('DATOS'),
+                ),
+                body: Column(
+                  children: [
+                    TextField(
+                      decoration: InputDecoration(labelText: 'NOMBRES'),
+                    ),
+                    TextField(
+                      decoration: InputDecoration(labelText: 'NOMBRES'),
+                    ),
+                    TextField(
+                      decoration: InputDecoration(labelText: 'NOMBRES'),
+                    ),
+                    ElevatedButton.icon(
+                      onPressed: () {},
+                      icon: Icon(Icons.edit), 
+                      label: Text('ACTUALIZAR'))
+                  ],
+                ),
+              );
+             });
+        }, 
+        icon: Icon(Icons.format_align_center), 
+        label: Text("FORM")),
     );
   }
 }
